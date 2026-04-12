@@ -1,0 +1,141 @@
+关于机器学习实验课环境配置说明
+——Windows 平台下的 uv 与 conda 两种配置方案
+本文档面向 Windows 平台，提供两种机器学习实验课环境配置方式：uv 与 conda。两种方案均可用于运行课程中的 .ipynb 文件，例如 ANN.ipynb、svm.ipynb 以及后续实验课所需的 Notebook 文件。
+说明：以下两种方案任选其一即可，无需同时安装。
+
+两种方案如何选择
+uv	希望环境更轻量，或者之前课程已经用过 uv 的同学	
+创建项目环境较快，适合按项目管理依赖
+conda	已经安装过 Miniconda / Anaconda，或更熟悉 conda 的同学	
+应用范围常见，包管理和环境切换较直观
+ 
+ 
+方案一：使用 uv 配置实验环境
+说明：以下两种情形请根据自身选择即可。
+情形一：上节课已经完成环境的配置
+若上节课已经完成环境配置，则无需重复安装，可以继续使用原先已经配置好的环境。
+后续实验只需在 VS Code 中打开原先的工作区或项目文件夹，并将后续课程需要使用的 .ipynb 文件放入对应目录中即可运行。
+后续使用方法
+ 
+情形二：尚未完成环境的配置
+若尚未完成环境配置，请按照以下步骤操作。
+第一步：打开 VS Code 并新建终端
+请先打开 VS Code，然后新建一个终端窗口。
+ 
+第二步：安装 uv 并初始化项目
+在终端中复制并依次执行以下命令：
+ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+ $env:Path = "$HOME\.local\bin;$env:Path"
+ uv --version
+ mkdir D:\ML\demo
+ cd D:\ML\demo
+ uv init
+ uv add numpy pandas matplotlib scikit-learn seaborn jupyter ipykernel
+ uv sync
+
+上述内容可自行替换 如项目目录
+第三步：确认项目目录
+上述命令执行完成后，项目目录位于：
+D:\ML\demo
+后续实验文件建议统一放在该目录中，便于管理和使用。原始说明也将该目录作为 uv 方案的工作目录。
+第四步：将实验文件放入工作区
+完成环境配置后，可采用以下任意一种方式：
+ 
+•	在 VS Code 中直接打开文件夹 D:\ML\demo
+•	将 ANN.ipynb 与 svm.ipynb 拖入该工作区
+•	后续课程中的其他 .ipynb 文件，也可继续放入该目录中使用
+第五步：选择 Notebook 内核
+打开 .ipynb 文件后，请在右上角找到 “选择内核”，然后依次选择：
+选择内核 → Python 环境 → demo (xxx)
+或者是以下情况
+选择内核 → Python 环境 → .venv (Python 3.x.x) .venv\..
+其中的 demo (xxx) 一般表示你刚刚配置完成的 uv 环境。选择完成后，即可运行 Notebook。
+ 
+ 
+第六步：后续使用方法
+后续实验课继续使用该环境时，只需按以下步骤操作：
+1.	打开 VS Code
+2.	打开文件夹 D:\ML\demo
+3.	将新的 .ipynb 文件放入该目录，或直接拖入工作区 
+或者 打开文件夹 D:\ML\demo 在该文件夹下打开后续的 .ipynb 文件即可。
+4.	打开 Notebook 文件
+5.	选择之前已经配置好的 demo 环境作为内核
+6.	直接运行即可
+情形一说明中也指出，后续使用方式与“已完成环境配置”的同学相同，即打开 D:\ML\demo 并将新的 .ipynb 文件拖入工作区即可运行。
+常见问题提醒
+1. 如果执行 uv --version 时提示无法识别 uv
+可先尝试重新执行以下命令：
+$env:Path = "$HOME\.local\bin;$env:Path"
+若仍无法识别，可关闭当前终端后重新打开，再次执行上述命令。
+2. 第一次打开 Notebook 时没有立即看到可选内核
+第一次打开 .ipynb 文件时，VS Code 可能需要几秒钟到十几秒钟识别 Python 环境，请稍等后再点击“选择内核”。
+或者可以在 ANN.ipynb文件中，随便选择一个代码块，执行单元格。
+ 
+
+ 
+方案二：使用 conda 配置实验环境
+第一步：下载安装 conda
+可根据个人需要选择以下任意一种：
+Miniconda
+Miniconda 是 精简版安装器，默认只包含 conda、Python 和少量基础组件，适合希望环境更轻量、后续按需安装包的同学。
+Anaconda Distribution
+Anaconda Distribution 是 完整版发行版，默认附带较多数据科学和机器学习常用包，开箱即用更方便，但安装体积更大。
+两者都可以用于本课程实验环境配置，同学们按需选择即可。
+ 如需下载，可前往：
+Anaconda 官网
+(https://www.anaconda.com/download/success)
+第二步：打开 VS Code 并新建终端
+安装完成后，打开 VS Code，并新建一个终端窗口。
+第三步：创建 conda 环境并安装依赖
+在终端中复制并依次执行以下命令：
+conda create -n ann python=3.9
+conda init
+conda activate ann
+pip install numpy pandas matplotlib scikit-learn seaborn jupyter ipykernel
+第四步：打开实验文件
+完成环境创建后，可直接在 VS Code 中打开：
+•	ANN.ipynb
+•	svm.ipynb
+•	后续实验课需要用到的其他 .ipynb 文件
+安装完成后，可直接在 VS Code 中打开 ANN.ipynb 与 svm.ipynb，以及后续实验课文件。
+第五步：选择 Notebook 内核
+打开 .ipynb 文件后，请在右上角点击 “选择内核”，然后依次选择：
+选择内核 → Python 环境 → ann (xxx)
+选择完成后即可运行。 “选择内核 → python 环境 → ann (xxx) xxx”的路径。
+第六步：后续使用方法
+后续实验课中，如需继续使用该环境，只需：
+1.	在 VS Code 中打开对应的 .ipynb 文件
+2.	选择之前已经创建好的 ann 环境作为内核
+3.	直接运行即可
+后续使用时只需在 VS Code 中打开 .ipynb 文件，并选好对应的ann内核或解释器即可。
+常见问题提醒
+1. Miniconda 和 Anaconda 有什么区别
+•	Miniconda：安装体积较小，更轻量，需要自己安装所需包
+•	Anaconda：自带更多常见科学计算和机器学习包，适合希望尽快开始使用的同学
+二者都可以满足本课程的实验需求。
+ 
+
+ 
+VS Code 中选择内核的统一说明
+无论你使用的是 uv 方案还是 conda 方案，运行 Notebook 时都需要完成这一步：
+1.	打开 .ipynb 文件
+2.	点击右上角的 “选择内核”
+3.	选择 “Python 环境”
+4.	从列表中选择你刚刚创建好的对应环境
+ 
+ 
+一般来说：
+•	使用 uv 方案时，选择 demo (xxx) 是
+•	使用 conda 方案时，选择 ann (xxx)
+只要选择了正确的内核，Notebook 就可以正常运行。原始文件在 uv 与 conda 两个部分中都强调了“选择内核 → python 环境 → 对应环境名称”的操作流程。
+ 
+建议与说明
+1. 两种方案如何选择
+若你希望环境更轻量、管理方式较新，可以选择 uv。 若你已经熟悉 conda，或已经安装了 Miniconda / Anaconda，则可直接选择 conda。
+2. 已经配置过环境的同学不要重复安装
+如果你之前已经成功运行过上节课课程中的 Notebook 文件，一般无需重复创建环境，只需继续使用原有环境即可。
+3. 后续实验课建议统一使用同一个工作目录
+建议将本课程后续实验文件统一放在固定目录中，例如：
+D:\ML\demo
+这样可以减少文件分散、环境混乱、找不到 Notebook 的问题。
+后续使用方法
