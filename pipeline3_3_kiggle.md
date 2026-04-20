@@ -369,13 +369,13 @@ Your solution's first column will be the ID Column, used to correlate rows betwe
 
 Your solution must have a "Usage" Column with values of "Public", "Private", or "Ignored" (without quotations) which determines the sampling of the public and private test sets. Participants can only see public scores while the competition is in progress, and the private score will be used for the final rankings.
 
-如若不知提交什么文档 可以用此项目下的 Solution.csv 进行提交
+如若不知提交什么文档 可以用此项目下的 /pipeline3_3_kiggle/Solution.csv 进行提交
 
 #### Sandbox Submissions
 
 Upload a Submission CSV and make sure it produces the expected score. These submissions are private unless tagged as a Benchmark, which appears on the Leaderboard.
 
-如若不知提交什么文档 可以用此项目下的 Sandbox_Submissions.csv 进行提交
+如若不知提交什么文档 可以用此项目下的 /pipeline3_3_kiggle/Sandbox_Submissions.csv 进行提交
 
 注注：
 
